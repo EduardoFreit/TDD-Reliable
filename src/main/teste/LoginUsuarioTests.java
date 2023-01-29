@@ -9,11 +9,14 @@ import main.java.entidades.Usuario;
 import main.java.negocio.LoginNegocio;
 import main.java.repositorio.UsuarioRepositorio;
 
-public class LoginUsuario {
+public class LoginUsuarioTests {
 	/*
 	 * RF005 - Logar Sistema
 	 * CASES TESTS - 11, 12 e 13
 	 */
+	
+	UsuarioRepositorio ur;
+	LoginNegocio lgn;
 
 	@Test
 	public void loginUsuarioEmailTest() {
@@ -24,11 +27,10 @@ public class LoginUsuario {
 		usuario.setEmail(email);
 		usuario.setPassword(password);
 		
-		UsuarioRepositorio ur = new UsuarioRepositorio();
+		ur = new UsuarioRepositorio();
+		lgn = new LoginNegocio(ur.getUsuarios());
 		
-		LoginNegocio login = new LoginNegocio(ur.getUsuarios());
-		
-		Boolean logou = login.logarUsuario(usuario);
+		Boolean logou = lgn.logarUsuario(usuario);
 		
 		assertTrue(logou);
 	}
@@ -42,11 +44,11 @@ public class LoginUsuario {
 		usuario.setTelefone(telefone);
 		usuario.setPassword(password);
 		
-		UsuarioRepositorio ur = new UsuarioRepositorio();
+		ur = new UsuarioRepositorio();
 		
-		LoginNegocio login = new LoginNegocio(ur.getUsuarios());
+		lgn = new LoginNegocio(ur.getUsuarios());
 		
-		Boolean logou = login.logarUsuario(usuario);
+		Boolean logou = lgn.logarUsuario(usuario);
 		
 		assertTrue(logou);
 	}
@@ -60,31 +62,31 @@ public class LoginUsuario {
 		usuario.setEmail(email);
 		usuario.setPassword(password);
 		
-		UsuarioRepositorio ur = new UsuarioRepositorio();
+		ur = new UsuarioRepositorio();
 		
-		LoginNegocio login = new LoginNegocio(ur.getUsuarios());
+		lgn = new LoginNegocio(ur.getUsuarios());
 		
-		Boolean logou = login.logarUsuario(usuario);
+		Boolean logou = lgn.logarUsuario(usuario);
 		
 		assertTrue(logou);
 	}
 	
 	@Test
 	public void loginUsuarioTelefoneIncorretoTest() {
-		String email = "luiz@email.com";
+		String email = "luiz_incorreto@email.com";
 		String password = "Luiz@1234";
 		
 		Usuario usuario = new Usuario();
 		usuario.setEmail(email);
 		usuario.setPassword(password);
 		
-		UsuarioRepositorio ur = new UsuarioRepositorio();
+		ur = new UsuarioRepositorio();
 		
-		LoginNegocio login = new LoginNegocio(ur.getUsuarios());
+		lgn = new LoginNegocio(ur.getUsuarios());
 		
-		Boolean logou = login.logarUsuario(usuario);
+		Boolean logou = lgn.logarUsuario(usuario);
 		
-		assertTrue(logou);
+		assertFalse(logou);
 	}
 	
 	@Test
@@ -93,11 +95,11 @@ public class LoginUsuario {
 		Usuario usuario = new Usuario();
 		usuario.setSemCredencial(true);
 		
-		UsuarioRepositorio ur = new UsuarioRepositorio();
+		ur = new UsuarioRepositorio();
 		
-		LoginNegocio login = new LoginNegocio(ur.getUsuarios());
+		lgn = new LoginNegocio(ur.getUsuarios());
 		
-		Boolean logou = login.logarUsuario(usuario);
+		Boolean logou = lgn.logarUsuario(usuario);
 		
 		assertTrue(logou);
 	}

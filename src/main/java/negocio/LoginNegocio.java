@@ -1,6 +1,5 @@
 package main.java.negocio;
 
-import java.util.Iterator;
 import java.util.List;
 
 import main.java.entidades.Usuario;
