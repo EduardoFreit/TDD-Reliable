@@ -11,11 +11,17 @@ public class UsuarioRepositorio {
 	
 	public UsuarioRepositorio () {
 		this.usuarios = new ArrayList<Usuario>();
-	}
-	
-	public boolean addUsuario(Usuario u) {
+		Usuario usuarioTesteLogin = new Usuario();
 		
-		return this.usuarios.add(u);
+		usuarioTesteLogin.setEmail("luiz@email.com");
+		usuarioTesteLogin.setTelefone("(81)9999-9999");
+		usuarioTesteLogin.setPassword("Luiz@1234");
+		
+		this.usuarios.add(usuarioTesteLogin);
 	}
-	
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
 }
