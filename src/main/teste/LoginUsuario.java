@@ -10,6 +10,10 @@ import main.java.negocio.LoginNegocio;
 import main.java.repositorio.UsuarioRepositorio;
 
 public class LoginUsuario {
+	/*
+	 * RF005 - Logar Sistema
+	 * CASES TESTS - 11, 12 e 13
+	 */
 
 	@Test
 	public void loginUsuarioEmailTest() {
