@@ -73,11 +73,11 @@ public class LoginUsuarioTests {
 	
 	@Test
 	public void loginUsuarioTelefoneIncorretoTest() {
-		String email = "luiz_incorreto@email.com";
+		String telefone = "(81)0000-0000";
 		String password = "Luiz@1234";
 		
 		Usuario usuario = new Usuario();
-		usuario.setEmail(email);
+		usuario.setTelefone(telefone);
 		usuario.setPassword(password);
 		
 		ur = new UsuarioRepositorio();

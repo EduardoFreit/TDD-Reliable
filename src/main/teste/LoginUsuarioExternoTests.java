@@ -13,7 +13,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import main.java.entidades.CredencialExterna;
 import main.java.negocio.LoginExternoNegocio;
-import main.service.LoginExternoService;
+import main.java.service.LoginExternoService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LoginUsuarioExternoTests {

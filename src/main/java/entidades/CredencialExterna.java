@@ -4,7 +4,6 @@ public class CredencialExterna {
 	
 	private String servicoExterno;
 	private String email;
-	private Boolean permitirVinculo;
 	
 	public CredencialExterna() {
 		// TODO Auto-generated constructor stub
@@ -24,14 +23,6 @@ public class CredencialExterna {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	
-	public Boolean permitirVinculo() {
-		return permitirVinculo;
-	}
-
-	public void setPermitirVinculo(Boolean permitirVinculo) {
-		this.permitirVinculo = permitirVinculo;
 	}
 
 	public Boolean equalsCredenciais(CredencialExterna crd) {

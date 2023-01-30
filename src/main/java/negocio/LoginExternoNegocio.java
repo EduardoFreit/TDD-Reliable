@@ -1,7 +1,7 @@
 package main.java.negocio;
 
 import main.java.entidades.CredencialExterna;
-import main.service.LoginExternoService;
+import main.java.service.LoginExternoService;
 
 public class LoginExternoNegocio {
 	
