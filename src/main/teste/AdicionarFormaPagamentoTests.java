@@ -70,7 +70,7 @@ public class AdicionarFormaPagamentoTests {
 	}
 	
 	@Test
-	public void addFormaPagamentoInvalidoTest() throws Exception {
+	public void addFormaPagamentoInvalidoValidadeTest() throws Exception {
 		Long idUsuario = 1L;
 		pr = new PagamentoRepositorio();
 		pn = new PagamentoNegocio(pr);
@@ -81,6 +81,54 @@ public class AdicionarFormaPagamentoTests {
 		cartao.setCVV("123");
 		cartao.setNome("Joao P L Silva");
 		cartao.setCpf("000.000.000-05");
+		cartao.setIdUsuario(idUsuario);
+		
+		List<CartaoPagamento> formasPagamentoAntes = pr.listarFormaPagamento(idUsuario);
+		assertEquals(1, formasPagamentoAntes.size());
+		
+		Boolean adicionado = pn.cadastrarFormaPagamento(cartao);
+		assertFalse(adicionado);
+		
+		List<CartaoPagamento> formasPagamentoDepois = pr.listarFormaPagamento(idUsuario);
+		assertEquals(1, formasPagamentoDepois.size());
+	}
+	
+	@Test
+	public void addFormaPagamentoInvalidoCPFTest() throws Exception {
+		Long idUsuario = 1L;
+		pr = new PagamentoRepositorio();
+		pn = new PagamentoNegocio(pr);
+		
+		CartaoPagamento cartao = new CartaoPagamento();
+		cartao.setNumero("1234123412341234");
+		cartao.setValidade(new SimpleDateFormat("MM/yyyy").parse("07/2030"));
+		cartao.setCVV("123");
+		cartao.setNome("Joao P L Silva");
+		cartao.setCpf("0000000000");
+		cartao.setIdUsuario(idUsuario);
+		
+		List<CartaoPagamento> formasPagamentoAntes = pr.listarFormaPagamento(idUsuario);
+		assertEquals(1, formasPagamentoAntes.size());
+		
+		Boolean adicionado = pn.cadastrarFormaPagamento(cartao);
+		assertFalse(adicionado);
+		
+		List<CartaoPagamento> formasPagamentoDepois = pr.listarFormaPagamento(idUsuario);
+		assertEquals(1, formasPagamentoDepois.size());
+	}
+	
+	@Test
+	public void addFormaPagamentoInvalidoNumeroTest() throws Exception {
+		Long idUsuario = 1L;
+		pr = new PagamentoRepositorio();
+		pn = new PagamentoNegocio(pr);
+		
+		CartaoPagamento cartao = new CartaoPagamento();
+		cartao.setNumero("123412341234");
+		cartao.setValidade(new SimpleDateFormat("MM/yyyy").parse("07/2030"));
+		cartao.setCVV("123");
+		cartao.setNome("Joao P L Silva");
+		cartao.setCpf("00000000005");
 		cartao.setIdUsuario(idUsuario);
 		
 		List<CartaoPagamento> formasPagamentoAntes = pr.listarFormaPagamento(idUsuario);
