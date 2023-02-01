@@ -11,13 +11,13 @@ public class UsuarioRepositorio {
 	
 	public UsuarioRepositorio () {
 		this.usuarios = new ArrayList<Usuario>();
-		Usuario usuarioTesteLogin = new Usuario();
+		Usuario usuario = new Usuario();
 		
-		usuarioTesteLogin.setEmail("luiz@email.com");
-		usuarioTesteLogin.setTelefone("(81)9999-9999");
-		usuarioTesteLogin.setPassword("Luiz@1234");
+		usuario.setEmail("luiz@email.com");
+		usuario.setTelefone("(81)9999-9999");
+		usuario.setSenha("Luiz@1234");
 		
-		this.usuarios.add(usuarioTesteLogin);
+		this.usuarios.add(usuario);
 	}
 
 	public List<Usuario> getUsuarios() {

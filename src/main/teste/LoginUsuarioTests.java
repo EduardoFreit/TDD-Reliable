@@ -25,7 +25,7 @@ public class LoginUsuarioTests {
 		
 		Usuario usuario = new Usuario();
 		usuario.setEmail(email);
-		usuario.setPassword(password);
+		usuario.setSenha(password);
 		
 		ur = new UsuarioRepositorio();
 		lgn = new LoginNegocio(ur.getUsuarios());
@@ -42,7 +42,7 @@ public class LoginUsuarioTests {
 		
 		Usuario usuario = new Usuario();
 		usuario.setTelefone(telefone);
-		usuario.setPassword(password);
+		usuario.setSenha(password);
 		
 		ur = new UsuarioRepositorio();
 		
@@ -60,7 +60,7 @@ public class LoginUsuarioTests {
 		
 		Usuario usuario = new Usuario();
 		usuario.setEmail(email);
-		usuario.setPassword(password);
+		usuario.setSenha(password);
 		
 		ur = new UsuarioRepositorio();
 		
@@ -78,7 +78,7 @@ public class LoginUsuarioTests {
 		
 		Usuario usuario = new Usuario();
 		usuario.setTelefone(telefone);
-		usuario.setPassword(password);
+		usuario.setSenha(password);
 		
 		ur = new UsuarioRepositorio();
 		

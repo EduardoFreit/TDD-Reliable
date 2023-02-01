@@ -4,7 +4,7 @@ public class Usuario {
 	
 	private String email;
 	private String telefone;
-	private String password;
+	private String senha;
 	private Boolean semCredencial;
 	
 	public Usuario() {
@@ -28,12 +28,12 @@ public class Usuario {
 		this.telefone = telefone;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setSenha(String password) {
+		this.senha = password;
 	}
 
 	public Boolean isSemCredencial() {
@@ -45,9 +45,9 @@ public class Usuario {
 	}
 	
 	public Boolean equalsCredenciaisLogin(Usuario usr) {
-		if(usr.getEmail() == this.getEmail() && usr.getPassword() == this.getPassword()) {
+		if(usr.getEmail() == this.getEmail() && usr.getSenha() == this.getSenha()) {
 			return true;
-		} else if (usr.getTelefone() == this.getTelefone() && usr.getPassword() == this.getPassword()) {
+		} else if (usr.getTelefone() == this.getTelefone() && usr.getSenha() == this.getSenha()) {
 			return true;
 		} else {
 			return false;
