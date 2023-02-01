@@ -21,5 +21,9 @@ public class LoginNegocio {
 		}
 		return loginBemSucedido;
 	}
+	
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
 
 }

@@ -22,7 +22,7 @@ public class ServicoRepositorio {
 		servico1.setRestricoes("Nenhuma");
 		
 		Servico servico2 = new Servico();
-		servico2.setId(1);
+		servico2.setId(2);
 		servico2.setNome("Manutenção de Carro");
 		servico2.setCategoria("Mecanica");
 		servico2.setDisponibilidade("Manhã/Tarde");
