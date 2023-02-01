@@ -9,7 +9,7 @@ import main.java.entidades.Usuario;
 import main.java.negocio.LoginNegocio;
 import main.java.repositorio.UsuarioRepositorio;
 
-public class LoginUsuarioTests {
+public class LoginTests {
 	
 	UsuarioRepositorio ur;
 	LoginNegocio lgn;
