@@ -15,7 +15,7 @@ public class ServicoTests {
 	@Test
 	public void excluirServicoTest() {
 		/*
-		 * RF008 -  Excluir Serviço
+		 * RF008 -  Excluir Serviço - Luiz Freitas
 		 * CASES TESTS - 24
 		 */
 		Integer idServico = 1;
