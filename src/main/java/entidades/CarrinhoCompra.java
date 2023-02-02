@@ -27,4 +27,12 @@ public class CarrinhoCompra {
 		this.usuario = usuario;
 	}
 	
+	public Double valorTotal() {
+		Double result = 0.0;
+		for (Servico servico : servicos) {
+			result += servico.getValor();
+		}
+		return result;
+	}
+	
 }

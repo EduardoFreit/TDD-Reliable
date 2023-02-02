@@ -2,11 +2,7 @@ package main.teste;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
 import org.junit.Test;
-
 import main.java.entidades.CarrinhoCompra;
 import main.java.entidades.Servico;
 import main.java.negocio.CarrinhoCompraNegocio;
