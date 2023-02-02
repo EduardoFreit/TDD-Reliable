@@ -16,6 +16,7 @@ public class UsuarioRepositorio {
 		usuario.setEmail("luiz@email.com");
 		usuario.setTelefone("(81)9999-9999");
 		usuario.setSenha("Luiz@1234");
+		usuario.setId(1);
 		
 		this.usuarios.add(usuario);
 	}

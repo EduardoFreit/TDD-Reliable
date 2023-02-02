@@ -2,6 +2,7 @@ package main.java.entidades;
 
 public class Usuario {
 	
+	private Integer id;
 	private String email;
 	private String telefone;
 	private String senha;
@@ -10,6 +11,14 @@ public class Usuario {
 	public Usuario() {
 		this.semCredencial = false;
 		// TODO Auto-generated constructor stub
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getEmail() {
