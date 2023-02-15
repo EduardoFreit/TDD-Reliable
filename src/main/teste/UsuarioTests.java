@@ -29,7 +29,7 @@ public class UsuarioTests {
 		
 		Usuario usuario2 = new Usuario();
 		
-		usuario2.setEmail("luiz@email.com");
+		usuario2.setEmail("Davidson@email.com");
 		usuario2.setTelefone("(81)9999-9999");
 		usuario2.setSenha("Luiz@1234");
 		usuario2.setId(2);
@@ -39,9 +39,9 @@ public class UsuarioTests {
 		
 		Usuario usuario3 = new Usuario();
 		
-		usuario3.setEmail("luiz@email.com");
+		usuario3.setEmail("Rafael@email.com");
 		usuario3.setTelefone("(81)9999-9999");
-		usuario3.setSenha("Luiz@1234");
+		usuario3.setSenha("Rafael@1234");
 		usuario3.setId(3);
 		
 		usuario.getFavoritos().add(usuario3);
@@ -68,13 +68,15 @@ public class UsuarioTests {
 		
 		assertTrue(usuario.getFavoritos().size() == 1);
 		
-		un.favoritarUsuario(usuario, idUsuario2);
+		Boolean favoritou = un.favoritarUsuario(usuario, idUsuario2);
+		
+		assertTrue(favoritou);
 		
 		assertTrue(usuario.getFavoritos().size() == 2);
 	}
 	
 	@Test
-	public void removerUsuarioTest() {
+	public void desfavoritarUsuarioTest() {
 		/*
 		 * RF017  - Desfavoritar Usuario - Davidson Felix
 		 * CASES TESTS - 21
@@ -86,7 +88,9 @@ public class UsuarioTests {
 		
 		assertTrue(usuario.getFavoritos().size() == 1);
 		
-		un.desfavoritarUsuario(usuario, idUsuario2);
+		Boolean desfavoritou = un.desfavoritarUsuario(usuario, idUsuario2);
+		
+		assertTrue(desfavoritou);
 		
 		assertTrue(usuario.getFavoritos().size() == 0);
 	}

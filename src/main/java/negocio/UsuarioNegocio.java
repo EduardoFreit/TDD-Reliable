@@ -11,20 +11,22 @@ public class UsuarioNegocio {
 		this.ur = ur;
 	}
 	
-	public void favoritarUsuario(Usuario usuarioQueFavoritou, Integer idUsuarioFavorito) {
+	public Boolean favoritarUsuario(Usuario usuarioQueFavoritou, Integer idUsuarioFavorito) {
 		Usuario usuarioFavorito = ur.getUsuario(idUsuarioFavorito);
 		
 		if(!usuarioQueFavoritou.equals(usuarioFavorito)) {
-			usuarioQueFavoritou.getFavoritos().add(usuarioFavorito);
+			return usuarioQueFavoritou.getFavoritos().add(usuarioFavorito);
 		}
+		return false;
 	}
 	
-	public void desfavoritarUsuario(Usuario usuarioQueFavoritou, Integer idUsuarioFavorito) {
+	public Boolean desfavoritarUsuario(Usuario usuarioQueFavoritou, Integer idUsuarioFavorito) {
 		Usuario usuarioFavorito = ur.getUsuario(idUsuarioFavorito);
 		
 		if(usuarioQueFavoritou.getFavoritos().contains(usuarioFavorito)) {
-			usuarioQueFavoritou.getFavoritos().remove(usuarioFavorito);
+			return usuarioQueFavoritou.getFavoritos().remove(usuarioFavorito);
 		}
+		return false;
 	}
 	
 	
