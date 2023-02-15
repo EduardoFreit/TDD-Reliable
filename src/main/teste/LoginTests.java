@@ -3,6 +3,10 @@ package main.teste;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import main.java.entidades.Usuario;
@@ -13,6 +17,33 @@ public class LoginTests {
 	
 	UsuarioRepositorio ur;
 	LoginNegocio lgn;
+	
+	@Before
+	public void initTestes() {
+		
+		List<Usuario> usuarios = new ArrayList<>();
+		
+		Usuario usuario = new Usuario();
+		
+		usuario.setEmail("luiz@email.com");
+		usuario.setTelefone("(81)9999-9999");
+		usuario.setSenha("Luiz@1234");
+		usuario.setId(1);
+		
+		Usuario usuario2 = new Usuario();
+		
+		usuario2.setEmail("luiz@email.com");
+		usuario2.setTelefone("(81)9999-9999");
+		usuario2.setSenha("Luiz@1234");
+		usuario2.setId(2);
+		
+		usuarios.add(usuario);
+		usuarios.add(usuario2);
+		
+		
+		ur = new UsuarioRepositorio(usuarios);
+		lgn = new LoginNegocio(ur.getUsuarios());
+	}
 
 	@Test
 	public void loginUsuarioEmailTest() {
@@ -26,9 +57,6 @@ public class LoginTests {
 		Usuario usuario = new Usuario();
 		usuario.setEmail(email);
 		usuario.setSenha(password);
-		
-		ur = new UsuarioRepositorio();
-		lgn = new LoginNegocio(ur.getUsuarios());
 		
 		Boolean logou = lgn.logarUsuario(usuario);
 		
@@ -48,10 +76,6 @@ public class LoginTests {
 		usuario.setTelefone(telefone);
 		usuario.setSenha(password);
 		
-		ur = new UsuarioRepositorio();
-		
-		lgn = new LoginNegocio(ur.getUsuarios());
-		
 		Boolean logou = lgn.logarUsuario(usuario);
 		
 		assertTrue(logou);
@@ -69,10 +93,6 @@ public class LoginTests {
 		Usuario usuario = new Usuario();
 		usuario.setEmail(email);
 		usuario.setSenha(password);
-		
-		ur = new UsuarioRepositorio();
-		
-		lgn = new LoginNegocio(ur.getUsuarios());
 		
 		Boolean logou = lgn.logarUsuario(usuario);
 		
@@ -92,10 +112,6 @@ public class LoginTests {
 		usuario.setTelefone(telefone);
 		usuario.setSenha(password);
 		
-		ur = new UsuarioRepositorio();
-		
-		lgn = new LoginNegocio(ur.getUsuarios());
-		
 		Boolean logou = lgn.logarUsuario(usuario);
 		
 		assertFalse(logou);
@@ -114,10 +130,6 @@ public class LoginTests {
 		usuario.setTelefone(telefone);
 		usuario.setSenha(password);
 		
-		ur = new UsuarioRepositorio();
-		
-		lgn = new LoginNegocio(ur.getUsuarios());
-		
 		Boolean logou = lgn.logarUsuario(usuario);
 		
 		assertFalse(logou);
@@ -131,10 +143,6 @@ public class LoginTests {
 		 */
 		Usuario usuario = new Usuario();
 		usuario.setSemCredencial(true);
-		
-		ur = new UsuarioRepositorio();
-		
-		lgn = new LoginNegocio(ur.getUsuarios());
 		
 		Boolean logou = lgn.logarUsuario(usuario);
 		

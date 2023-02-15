@@ -10,9 +10,8 @@ public class CarrinhoCompraRepositorio {
 	
 	private List<CarrinhoCompra> carrinhos;
 	
-	public CarrinhoCompraRepositorio() {
+	public CarrinhoCompraRepositorio(UsuarioRepositorio ur) {
 		this.carrinhos = new ArrayList<>();
-		UsuarioRepositorio ur = new UsuarioRepositorio();
 		Usuario user = ur.getUsuarios().get(0);
 		
 		CarrinhoCompra carrinho = new CarrinhoCompra();

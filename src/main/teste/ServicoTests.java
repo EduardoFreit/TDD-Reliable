@@ -2,9 +2,14 @@ package main.teste;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.Before;
 import org.junit.Test;
 
+import main.java.entidades.AvaliacaoServico;
 import main.java.entidades.FiltroBuscaServico;
 import main.java.entidades.Servico;
 import main.java.negocio.ServicoNegocio;
@@ -15,6 +20,36 @@ public class ServicoTests {
 	ServicoRepositorio sr;
 	ServicoNegocio sn;
 	
+	@Before
+	public void initTestes() {
+		List<Servico> servicos = new ArrayList<>();
+		
+		Servico servico1 = new Servico();
+		servico1.setId(1);
+		servico1.setNome("Limpeza de Casa");
+		servico1.setCategoria("Limpeza");
+		servico1.setDisponibilidade("Manhã");
+		servico1.setValor(80.0);
+		servico1.setDiferenciais("Profissional");
+		servico1.setRestricoes("Nenhuma");
+		
+		Servico servico2 = new Servico();
+		servico2.setId(2);
+		servico2.setNome("Manutenção de Carro");
+		servico2.setCategoria("Mecanica");
+		servico2.setDisponibilidade("Manhã/Tarde");
+		servico2.setValor(500.0);
+		servico2.setDiferenciais("Troca de Oleo");
+		servico2.setRestricoes("Nenhuma");
+		
+		servicos.add(servico1);
+		servicos.add(servico2);
+		
+		
+		sr = new ServicoRepositorio(servicos);
+		sn = new ServicoNegocio(sr);
+	}
+	
 	@Test
 	public void excluirServicoTest() {
 		/*
@@ -22,7 +57,6 @@ public class ServicoTests {
 		 * CASES TESTS - 24
 		 */
 		Integer idServico = 1;
-		sr = new ServicoRepositorio();
 		
 		List<Servico> servicosUsuarioAntes = sr.listarServicos();
 		
@@ -48,7 +82,6 @@ public class ServicoTests {
 		 * CASES TESTS - 25
 		 */
 		FiltroBuscaServico filtro = new FiltroBuscaServico();
-		sr = new ServicoRepositorio();
 		sn = new ServicoNegocio(sr);
 		
 		filtro.setNome("Casa");
@@ -73,7 +106,6 @@ public class ServicoTests {
 		 * CASES TESTS - 25
 		 */
 		FiltroBuscaServico filtro = new FiltroBuscaServico();
-		sr = new ServicoRepositorio();
 		sn = new ServicoNegocio(sr);
 		
 		filtro.setNome("Casa");
@@ -91,7 +123,6 @@ public class ServicoTests {
 		 * CASES TESTS - 25
 		 */
 		FiltroBuscaServico filtro = new FiltroBuscaServico();
-		sr = new ServicoRepositorio();
 		sn = new ServicoNegocio(sr);
 		
 		filtro.setCategoria("Mecanica");
@@ -129,7 +160,6 @@ public class ServicoTests {
 		 * CASES TESTS - 25
 		 */
 		FiltroBuscaServico filtro = new FiltroBuscaServico();
-		sr = new ServicoRepositorio();
 		sn = new ServicoNegocio(sr);
 		
 		filtro.setValorInicio(100.0);
@@ -148,7 +178,6 @@ public class ServicoTests {
 		 * CASES TESTS - 25
 		 */
 		FiltroBuscaServico filtro = new FiltroBuscaServico();
-		sr = new ServicoRepositorio();
 		sn = new ServicoNegocio(sr);
 		
 		filtro.setDiferenciais("Oleo");
@@ -166,7 +195,6 @@ public class ServicoTests {
 		 * CASES TESTS - 25
 		 */
 		FiltroBuscaServico filtro = new FiltroBuscaServico();
-		sr = new ServicoRepositorio();
 		sn = new ServicoNegocio(sr);
 		
 		filtro.setRestricoes("Nenhuma");
@@ -185,7 +213,6 @@ public class ServicoTests {
 		 * CASES TESTS - 25
 		 */
 		FiltroBuscaServico filtro = new FiltroBuscaServico();
-		sr = new ServicoRepositorio();
 		sn = new ServicoNegocio(sr);
 		
 		filtro.setNome("cozinha");
@@ -193,6 +220,91 @@ public class ServicoTests {
 		List<Servico> servicos = sn.buscarServico(filtro);
 		
 		assertEquals(0, servicos.size());
+	}
+	
+	@Test
+	public void editarServicoTest() {
+		/*
+		 * RF007  - Editar Serviço - Davidson Felix
+		 * CASES TESTS - 20
+		 */
+		Integer idServico = 1;
+		
+		Servico servico = sr.getServico(idServico);
+		
+		assertTrue(servico.getNome().equals("Limpeza de Casa"));
+		assertTrue(servico.getCategoria().equals("Limpeza"));
+		assertTrue(servico.getDisponibilidade().equals("Manhã"));
+		assertTrue(servico.getValor().equals(80.0));
+		assertTrue(servico.getDiferenciais().equals("Profissional"));
+		assertTrue(servico.getRestricoes().equals("Nenhuma"));
+		
+		Servico servicoEditar = new Servico();
+		
+		servicoEditar.setNome("Limpeza de Carro");
+		servicoEditar.setCategoria("Limpeza Carro");
+		servicoEditar.setDisponibilidade("Tarde");
+		servicoEditar.setValor(100.0);
+		servicoEditar.setDiferenciais("Nenhuma");
+		servicoEditar.setRestricoes("Nenhuma");
+		
+		Boolean editou = sn.editarServico(servico, servicoEditar);
+		assertTrue(editou);
+		
+		assertTrue(servico.getNome().equals("Limpeza de Carro"));
+		assertTrue(servico.getCategoria().equals("Limpeza Carro"));
+		assertTrue(servico.getDisponibilidade().equals("Tarde"));
+		assertTrue(servico.getValor().equals(100.0));
+		assertTrue(servico.getDiferenciais().equals("Nenhuma"));
+		assertTrue(servico.getRestricoes().equals("Nenhuma"));
+	}
+	
+	@Test
+	public void cadastrarServicoTest() {
+		/*
+		 * RF006  - Cadastrar Serviço - Davidson Felix
+		 * CASES TESTS - 22
+		 */
+		Servico servicoCadastrar = new Servico();
+		
+		servicoCadastrar.setNome("Sabor da Terra");
+		servicoCadastrar.setCategoria("Alimentação");
+		servicoCadastrar.setDisponibilidade("Tarde");
+		servicoCadastrar.setValor(35.0);
+		servicoCadastrar.setDiferenciais("Adultos: Galeto completo");
+		servicoCadastrar.setRestricoes("Nenhuma");
+		
+		assertTrue(sr.totalServicos() == 2);
+		
+		Boolean cadastrou = sn.cadastrarServico(servicoCadastrar);
+		assertTrue(cadastrou);
+		
+		assertTrue(sr.totalServicos() == 3);
+	}
+	
+	@Test
+	public void avaliarServicoTest() {
+		/*
+		 * RF015  - Avaliar Serviço - Davidson Felix
+		 * CASES TESTS - 23
+		 */
+		Integer idUsuario = 2;
+		Integer idServico = 1;
+		
+		AvaliacaoServico avaliacao = new AvaliacaoServico();
+		avaliacao.setRate(4);
+		avaliacao.setComentario("Serviço Bom");
+		avaliacao.setIdUsuario(idUsuario);
+		
+		Servico servicoAvaliar = sr.getServico(idServico);
+		
+		assertTrue(servicoAvaliar.getAvaliacoes().size() == 0);
+		
+		Boolean avaliado = sn.avaliarServico(servicoAvaliar, avaliacao);
+		
+		assertTrue(avaliado);
+		
+		assertTrue(servicoAvaliar.getAvaliacoes().size() == 1);
 	}
 
 }

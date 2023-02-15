@@ -5,6 +5,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -16,10 +20,12 @@ import main.java.entidades.Cartao;
 import main.java.entidades.PIX;
 import main.java.entidades.Pagamento;
 import main.java.entidades.Servico;
+import main.java.entidades.Usuario;
 import main.java.negocio.CarrinhoCompraNegocio;
 import main.java.negocio.PagementoNegocio;
 import main.java.repositorio.CarrinhoCompraRepositorio;
 import main.java.repositorio.ServicoRepositorio;
+import main.java.repositorio.UsuarioRepositorio;
 import main.java.service.PagamentoApiService;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -28,12 +34,42 @@ public class PagamentoTests {
 	CarrinhoCompraRepositorio cr;
 	CarrinhoCompraNegocio cn;
 	ServicoRepositorio sr;
+	UsuarioRepositorio ur;
 	
 	@InjectMocks
 	PagementoNegocio pn;
 	
 	@Mock
 	PagamentoApiService ps;
+	
+	@Before
+	public void initTestes() {
+		
+		List<Usuario> usuarios = new ArrayList<>();
+		
+		Usuario usuario = new Usuario();
+		
+		usuario.setEmail("luiz@email.com");
+		usuario.setTelefone("(81)9999-9999");
+		usuario.setSenha("Luiz@1234");
+		usuario.setId(1);
+		
+		Usuario usuario2 = new Usuario();
+		
+		usuario2.setEmail("luiz@email.com");
+		usuario2.setTelefone("(81)9999-9999");
+		usuario2.setSenha("Luiz@1234");
+		usuario2.setId(2);
+		
+		usuarios.add(usuario);
+		usuarios.add(usuario2);
+		
+		
+		ur = new UsuarioRepositorio(usuarios);
+		cr = new CarrinhoCompraRepositorio(ur);
+		cn = new CarrinhoCompraNegocio(cr);
+		sr = new ServicoRepositorio();
+	}
 	
 	@Test
 	public void addServicoCarrinhoPixTest() {
@@ -45,9 +81,7 @@ public class PagamentoTests {
 		Integer idUsuario = 1;
 		String tipoChave = "EMAIL";
 		String chavePIX = "luiz@email.com";
-		cr = new CarrinhoCompraRepositorio();
-		cn = new CarrinhoCompraNegocio(cr);
-		sr = new ServicoRepositorio();
+		
 		
 		CarrinhoCompra carrinho = cn.getCarrinho(idUsuario);
 		Servico servicoAddCarrinho = sr.getServico(idServico);
@@ -79,10 +113,6 @@ public class PagamentoTests {
 		Integer idUsuario = 1;
 		String tipoChave = "EMAIL";
 		String chavePIX = "luiz_invalido@email.com";
-		cr = new CarrinhoCompraRepositorio();
-		cn = new CarrinhoCompraNegocio(cr);
-		sr = new ServicoRepositorio();
-		
 		
 		CarrinhoCompra carrinho = cn.getCarrinho(idUsuario);
 		Servico servicoAddCarrinho = sr.getServico(idServico);
@@ -115,9 +145,6 @@ public class PagamentoTests {
 		String numeroCartao = "1234123412341234";
 		String CVVCartao = "123";
 		String validadeCartao = "07/30";
-		cr = new CarrinhoCompraRepositorio();
-		cn = new CarrinhoCompraNegocio(cr);
-		sr = new ServicoRepositorio();
 		
 		CarrinhoCompra carrinho = cn.getCarrinho(idUsuario);
 		Servico servicoAddCarrinho = sr.getServico(idServico);
@@ -151,9 +178,6 @@ public class PagamentoTests {
 		String numeroCartao = "123412341234";
 		String CVVCartao = "123";
 		String validadeCartao = "07/22";
-		cr = new CarrinhoCompraRepositorio();
-		cn = new CarrinhoCompraNegocio(cr);
-		sr = new ServicoRepositorio();
 		
 		CarrinhoCompra carrinho = cn.getCarrinho(idUsuario);
 		Servico servicoAddCarrinho = sr.getServico(idServico);

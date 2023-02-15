@@ -1,5 +1,8 @@
 package main.java.entidades;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Servico {
 	
 	private Integer id;
@@ -9,9 +12,11 @@ public class Servico {
 	private String disponibilidade;
 	private String restricoes;
 	private String diferenciais;
+	private List<AvaliacaoServico> avaliacoes;
 	
 	public Servico() {
 		// TODO Auto-generated constructor stub
+		this.avaliacoes = new ArrayList<>();
 	}
 
 	public Integer getId() {
@@ -38,6 +43,10 @@ public class Servico {
 		this.categoria = categoria;
 	}
 
+	public Double servico() {
+		return valor;
+	}
+	
 	public Double getValor() {
 		return valor;
 	}
@@ -68,6 +77,23 @@ public class Servico {
 
 	public void setDiferenciais(String diferenciais) {
 		this.diferenciais = diferenciais;
+	}
+	
+	public List<AvaliacaoServico> getAvaliacoes() {
+		return avaliacoes;
+	}
+
+	public void setAvaliacoes(List<AvaliacaoServico> avaliacoes) {
+		this.avaliacoes = avaliacoes;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Servico servico = (Servico) obj;
+		if(this.id == servico.getId()) {
+			return true;
+		}
+		return false;
 	}
 	
 }

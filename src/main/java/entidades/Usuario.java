@@ -1,5 +1,8 @@
 package main.java.entidades;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Usuario {
 	
 	private Integer id;
@@ -7,9 +10,11 @@ public class Usuario {
 	private String telefone;
 	private String senha;
 	private Boolean semCredencial;
+	private List<Usuario> favoritos;
 	
 	public Usuario() {
 		this.semCredencial = false;
+		this.favoritos = new ArrayList<>();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -61,6 +66,23 @@ public class Usuario {
 		} else {
 			return false;
 		}
+	}
+	
+	public List<Usuario> getFavoritos() {
+		return favoritos;
+	}
+
+	public void setFavoritos(List<Usuario> favoritos) {
+		this.favoritos = favoritos;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Usuario usr = (Usuario) obj;
+		if(usr.getId() == this.id) {
+			return true;
+		}
+		return false;
 	}
 
 }

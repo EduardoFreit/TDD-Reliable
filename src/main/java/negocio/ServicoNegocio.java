@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import main.java.entidades.AvaliacaoServico;
 import main.java.entidades.FiltroBuscaServico;
 import main.java.entidades.Servico;
 import main.java.repositorio.ServicoRepositorio;
@@ -70,6 +71,29 @@ public class ServicoNegocio {
 		}).collect(Collectors.toList());
 		
 		return result;
+	}
+	
+	public Boolean editarServico(Servico servico, Servico servicoEditar) {
+		if(!servico.equals(servicoEditar)) {
+			return sr.updateServico(servico, servicoEditar);
+		}
+		return false;
+	}
+	
+	public Boolean cadastrarServico(Servico servicoCad) {
+		if(!sr.getAllServicos().contains(servicoCad)) {
+			return sr.addServico(servicoCad);
+		}
+		return false;
+	}
+	
+	public Boolean avaliarServico(Servico servicoAvaliar, AvaliacaoServico avaliacao) {
+		for (AvaliacaoServico aval: servicoAvaliar.getAvaliacoes()) {
+			if(aval.getIdUsuario().equals(avaliacao.getIdUsuario())) {
+				return false;
+			}
+		}
+		return sr.addAvaliacao(servicoAvaliar, avaliacao);
 	}
 
 }
